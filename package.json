@@ -1,0 +1,37 @@
+{
+  "name": "smarttime",
+  "version": "1.0.0",
+  "description": "bundles smart ways to work with timestamps in nodejs",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "(npmts)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/pushrocks/smarttime.git"
+  },
+  "keywords": [
+    "time"
+  ],
+  "author": "Lossless GmbH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/pushrocks/smarttime/issues"
+  },
+  "homepage": "https://gitlab.com/pushrocks/smarttime#README",
+  "devDependencies": {
+    "npmts-g": "^5.2.6",
+    "should": "^9.0.2",
+    "typings-test": "^1.0.1"
+  },
+  "dependencies": {
+    "beautylog": "^5.0.12",
+    "mathjs": "^3.2.1",
+    "moment": "^2.13.0",
+    "q": "^1.4.1",
+    "typings-global": "^1.0.3"
+  }
+}
