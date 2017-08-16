@@ -1,3 +1,4 @@
 import * as plugins from './smarttime.plugins'
 
-export let standardExport = 'Hi there! :) This is a exported string'
+export * from './smarttime.classes.hrtmeasurement'
+export * from './smarttime.classes.timestamp'
