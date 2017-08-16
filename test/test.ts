@@ -16,6 +16,7 @@ tap.test('should create valid testTimeStamp instance', async (tools) => {
 tap.test('should have valid linuxtime', async () => {
   // tslint:disable-next-line:no-unused-expression
   expect(testTimeStamp.isOlderThan(testTimeStamp2)).to.be.true
+  // tslint:disable-next-line:no-unused-expression
   expect(testTimeStamp.isYoungerThan(testTimeStamp2)).to.be.false
 })
 
