@@ -32,5 +32,17 @@ tap.test('should create valid HrtMeasurements', async (tools) => {
   expect(testHrtMeasurement.milliSeconds).to.be.lessThan(25)
 })
 
+// check units
+tap.test('should combine units', async () => {
+  let computedTime = smarttime.getMilliSecondsFromUnits({
+    years: 2,
+    months: 2,
+    weeks: 2,
+    days: 2,
+    hours: 2,
+    minutes: 2
+  })
+  console.log(computedTime)
+})
 
 tap.start()
