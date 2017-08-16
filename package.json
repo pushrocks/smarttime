@@ -1,6 +1,6 @@
 {
   "name": "smarttime",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "handle timeformats in smart ways",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
