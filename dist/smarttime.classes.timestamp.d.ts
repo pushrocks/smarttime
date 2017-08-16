@@ -34,6 +34,6 @@ export declare class TimeStamp {
      * Is the current instance older than the argument
      * @param TimeStampArg
      */
-    isOlderThan(TimeStampArg: TimeStamp): boolean;
-    isYoungerThan(TimeStampArg: TimeStamp): boolean;
+    isOlderThan(TimeStampArg: TimeStamp, compareTimeArg?: number): boolean;
+    isYoungerThan(TimeStampArg: TimeStamp, compareTimeArg?: number): boolean;
 }

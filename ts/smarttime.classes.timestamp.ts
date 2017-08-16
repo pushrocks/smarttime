@@ -57,16 +57,32 @@ export class TimeStamp {
    * Is the current instance older than the argument
    * @param TimeStampArg
    */
-  isOlderThan (TimeStampArg: TimeStamp) {
-    if (this.milliSeconds < TimeStampArg.milliSeconds) {
+  isOlderThan (TimeStampArg: TimeStamp, compareTimeArg?: number) {
+    if (
+      this.milliSeconds < TimeStampArg.milliSeconds &&
+      (
+        !compareTimeArg ||
+        (
+          compareTimeArg && ((TimeStampArg.milliSeconds - this.milliSeconds) > compareTimeArg)
+        )
+      )
+    ) {
       return true
     } else {
       return false
     }
   }
 
-  isYoungerThan (TimeStampArg: TimeStamp) {
-    if (this.milliSeconds > TimeStampArg.milliSeconds) {
+  isYoungerThan (TimeStampArg: TimeStamp, compareTimeArg?: number) {
+    if (
+      this.milliSeconds > TimeStampArg.milliSeconds &&
+      (
+        !compareTimeArg ||
+        (
+          compareTimeArg && ((this.milliSeconds - TimeStampArg.milliSeconds) > compareTimeArg)
+        )
+      )
+    ) {
       return true
     } else {
       return false
