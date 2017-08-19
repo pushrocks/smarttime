@@ -1,18 +1,18 @@
 export let units = {
   years: (timesArg = 1): number => {
-    return timesArg * 3154e+10
+    return timesArg * 3.154e+10
   },
   months: (timesArg = 1): number => {
-    return timesArg * 2628e+9
+    return timesArg * 2.628e+9
   },
   weeks: (timesArg = 1) => {
-    return timesArg * 6048e+8
+    return timesArg * 6.048e+8
   },
   days: (timesArg = 1) => {
-    return timesArg * 864e+7
+    return timesArg * 8.64e+7
   },
   hours: (timesArg = 1) => {
-    return timesArg * 36e+6
+    return timesArg * 3.6e+5
   },
   minutes: (timesArg = 1) => {
     return timesArg * 60000
