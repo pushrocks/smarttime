@@ -12,7 +12,7 @@ export let units = {
     return timesArg * 8.64e+7
   },
   hours: (timesArg = 1) => {
-    return timesArg * 3.6e+5
+    return timesArg * 3.6e+6
   },
   minutes: (timesArg = 1) => {
     return timesArg * 60000
