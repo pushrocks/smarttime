@@ -6,4 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./smarttime.classes.hrtmeasurement"));
 __export(require("./smarttime.classes.timestamp"));
 __export(require("./smarttime.units"));
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi90cy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUVBLHdEQUFrRDtBQUNsRCxtREFBNkM7QUFDN0MsdUNBQWlDIn0=
+var smarttime_plugins_1 = require("./smarttime.plugins");
+exports.moment = smarttime_plugins_1.moment;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi90cy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUVBLHdEQUFrRDtBQUNsRCxtREFBNkM7QUFDN0MsdUNBQWlDO0FBRWpDLHlEQUE0QztBQUFuQyxxQ0FBQSxNQUFNLENBQUEifQ==
