@@ -4,6 +4,15 @@
  */
 export declare class TimeStamp {
     /**
+     * returns new TimeStamp from milliseconds
+     */
+    static fromMilliSeconds(milliSecondsArg: any): TimeStamp;
+    /**
+     * returns new TimeStamp for now with change set
+     * @param timeStampArg
+     */
+    static fromTimeStamp(timeStampArg: TimeStamp): TimeStamp;
+    /**
      * The standard JavaScript Date
      */
     date: Date;
@@ -21,15 +30,6 @@ export declare class TimeStamp {
      */
     change: number;
     constructor(creatorArg?: number);
-    /**
-     * returns new TimeStamp from milliseconds
-     */
-    static fromMilliSeconds(milliSecondsArg: any): TimeStamp;
-    /**
-     * returns new TimeStamp for now with change set
-     * @param timeStampArg
-     */
-    static fromTimeStamp(timeStampArg: TimeStamp): TimeStamp;
     /**
      * Is the current instance older than the argument
      * @param TimeStampArg

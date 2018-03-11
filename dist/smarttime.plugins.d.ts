@@ -1,3 +1,3 @@
-import 'typings-global';
 import * as moment from 'moment';
-export { moment };
+import * as smartq from 'smartq';
+export { moment, smartq };

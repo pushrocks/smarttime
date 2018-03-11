@@ -1,7 +1,4 @@
-import 'typings-global'
+import * as moment from 'moment';
+import * as smartq from 'smartq';
 
-import * as moment from 'moment'
-
-export {
-  moment
-}
+export { moment, smartq };
