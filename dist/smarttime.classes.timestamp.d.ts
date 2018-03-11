@@ -35,5 +35,6 @@ export declare class TimeStamp {
      * @param TimeStampArg
      */
     isOlderThan(TimeStampArg: TimeStamp, tresholdTimeArg?: number): boolean;
-    isYoungerThan(TimeStampArg: TimeStamp, tresholdTimeArg?: number): boolean;
+    isYoungerThanOtherTimeStamp(TimeStampArg: TimeStamp, tresholdTimeArg?: number): boolean;
+    isYoungerThanMilliSeconds(millisecondArg: number): boolean;
 }

@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-implicit-dependencies
 import { expect, tap } from 'tapbundle';
 import * as smarttime from '../ts/index';
 
@@ -16,7 +17,7 @@ tap.test('should have valid linuxtime', async () => {
   // tslint:disable-next-line:no-unused-expression
   expect(testTimeStamp.isOlderThan(testTimeStamp2)).to.be.true;
   // tslint:disable-next-line:no-unused-expression
-  expect(testTimeStamp.isYoungerThan(testTimeStamp2)).to.be.false;
+  expect(testTimeStamp.isYoungerThanOtherTimeStamp(testTimeStamp2)).to.be.false;
 });
 
 let testHrtMeasurement: smarttime.HrtMeasurement;
@@ -33,8 +34,9 @@ tap.test('should create valid HrtMeasurements', async tools => {
 
 // check units
 tap.test('should combine units', async () => {
-  let computedTime = smarttime.getMilliSecondsFromUnits({
+  const computedTime = smarttime.getMilliSecondsFromUnits({
     years: 2,
+    // tslint:disable-next-line:object-literal-sort-keys
     months: 2,
     weeks: 2,
     days: 2,

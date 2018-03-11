@@ -65,11 +65,18 @@ export class TimeStamp {
     }
   }
 
-  public isYoungerThan(TimeStampArg: TimeStamp, tresholdTimeArg: number = 0) {
+  public isYoungerThanOtherTimeStamp(TimeStampArg: TimeStamp, tresholdTimeArg: number = 0) {
     if (this.milliSeconds > TimeStampArg.milliSeconds + tresholdTimeArg) {
       return true;
     } else {
       return false;
     }
+  }
+
+  public isYoungerThanMilliSeconds(millisecondArg: number) {
+    const nowTimeStamp = new TimeStamp()
+    const compareEpochTime = nowTimeStamp.epochtime - millisecondArg;
+    const compareTimeStamp = new TimeStamp(compareEpochTime);
+    return this.isYoungerThanOtherTimeStamp(compareTimeStamp);
   }
 }
