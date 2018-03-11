@@ -43,6 +43,7 @@ tap.test('should combine units', async () => {
     hours: 2,
     minutes: 2
   });
+  // tslint:disable-next-line:no-console
   console.log(computedTime);
 });
 
