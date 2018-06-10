@@ -74,7 +74,7 @@ export class TimeStamp {
   }
 
   public isYoungerThanMilliSeconds(millisecondArg: number) {
-    const nowTimeStamp = new TimeStamp()
+    const nowTimeStamp = new TimeStamp();
     const compareEpochTime = nowTimeStamp.epochtime - millisecondArg;
     const compareTimeStamp = new TimeStamp(compareEpochTime);
     return this.isYoungerThanOtherTimeStamp(compareTimeStamp);

@@ -7,12 +7,12 @@ let testTimer: Timer;
 
 tap.test('should create a valid timer', async () => {
   testTimer = new Timer(1000);
-  expect(testTimer).to.be.instanceof(Timer)
-})
+  expect(testTimer).to.be.instanceof(Timer);
+});
 
 tap.test('should start timer', async () => {
-  testTimer.start()
+  testTimer.start();
   await testTimer.completed;
-})
+});
 
-tap.start()
+tap.start();
