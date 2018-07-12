@@ -39,7 +39,7 @@ export class Timer {
   private currentTimeout: NodeJS.Timer;
 
   // a deferred triggeted when Timer has completed
-  private completedDeferred = plugins.smartq.defer<void>();
+  private completedDeferred = plugins.smartpromise.defer<void>();
 
   constructor(timeInMillisecondsArg: number) {
     this.timeInMilliseconds = timeInMillisecondsArg;

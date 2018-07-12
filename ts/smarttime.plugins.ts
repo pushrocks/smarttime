@@ -1,4 +1,4 @@
 import * as moment from 'moment';
-import * as smartq from 'smartq';
+import * as smartpromise from '@pushrocks/smartpromise';
 
-export { moment, smartq };
+export { moment, smartpromise };
