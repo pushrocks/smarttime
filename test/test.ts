@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-implicit-dependencies
-import { expect, tap } from 'tapbundle';
+import { expect, tap } from '@pushrocks/tapbundle';
 import * as smarttime from '../ts/index';
 
 // Test TimeStamp class
