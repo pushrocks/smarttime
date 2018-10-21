@@ -7,4 +7,9 @@ tap.test('should create a valid JavaScript Date from European TimeStamp', async 
   console.log(extendedDate);
 });
 
+tap.test('should create a date and time with European Format', async () => {
+  const extendedDate = smarttime.ExtendedDate.fromEuropeanDateAndTime('10.10.2018', '08:00:00', 'Europe/Berlin');
+  console.log(extendedDate);
+})
+
 tap.start();

@@ -19,11 +19,12 @@ handle timeformats in smart ways
 [![bitHound Code](https://www.bithound.io/github/pushrocks/smarttime/badges/code.svg)](https://www.bithound.io/github/pushrocks/smarttime)
 [![TypeScript](https://img.shields.io/badge/TypeScript-2.x-blue.svg)](https://nodejs.org/dist/latest-v6.x/docs/api/)
 [![node](https://img.shields.io/badge/node->=%206.x.x-blue.svg)](https://nodejs.org/dist/latest-v6.x/docs/api/)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 ## Usage
 
 Use TypeScript for best in class instellisense.
+
+Smarttime offers smart ways to deal with time.
 
 For further information read the linked docs at the top of this README.
 
