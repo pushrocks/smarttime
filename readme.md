@@ -1,4 +1,4 @@
-# smarttime
+# @pushrocks/smarttime
 
 handle timeformats in smart ways
 
@@ -25,6 +25,15 @@ handle timeformats in smart ways
 Use TypeScript for best in class instellisense.
 
 Smarttime offers smart ways to deal with time.
+
+### class ExtendedDate
+
+This class offers static functions to create zone speicific JavaScript dates from European formated time strings.
+
+```TypeScript
+import { ExtendedDate } from '@pushrocks/smarttime'
+const myDate: Date = ExtendedDate.fromEuropeanDate('8.6.2018')
+```
 
 For further information read the linked docs at the top of this README.
 
