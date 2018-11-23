@@ -24,13 +24,12 @@ export class ExtendedDate extends Date {
     const sliceDate = (dateString: string) => {
       return `0${dateString}`.slice(-2);
     };
-    const dateTimeString = `${dateArray[3]}-${sliceDate(dateArray[2])}-${sliceDate(dateArray[1])}T${timeArg}`;
-    const luxonDate = plugins.luxon.DateTime.fromISO(
-      dateTimeString,
-      {
-        zone: zoneArg
-      }
-    );
+    const dateTimeString = `${dateArray[3]}-${sliceDate(dateArray[2])}-${sliceDate(
+      dateArray[1]
+    )}T${timeArg}`;
+    const luxonDate = plugins.luxon.DateTime.fromISO(dateTimeString, {
+      zone: zoneArg
+    });
     const unixMilli = luxonDate.toMillis();
     return new ExtendedDate(unixMilli);
   }

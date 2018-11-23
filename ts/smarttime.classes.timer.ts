@@ -70,6 +70,14 @@ export class Timer {
       this.currentTimeout = setTimeout(() => {
         this.completedDeferred.resolve();
       }, this.timeLeft);
+    } else {
+      throw new Error('timer has NOT been started before. Please use .start() instead');
     }
+  }
+
+  public reset() {
+    this.pause();
+    this.startedAt = null;
+    this.pausedAt = null;
   }
 }
