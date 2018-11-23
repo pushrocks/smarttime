@@ -61,9 +61,11 @@ export class Timer {
   }
 
   public pause() {
-    clearTimeout(this.currentTimeout);
-    this.currentTimeout = null;
-    this.pausedAt = TimeStamp.fromTimeStamp(this.startedAt);
+    if (this.startedAt) {
+      clearTimeout(this.currentTimeout);
+      this.currentTimeout = null;
+      this.pausedAt = TimeStamp.fromTimeStamp(this.startedAt);
+    }
   }
 
   public resume() {
