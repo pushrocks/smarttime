@@ -15,4 +15,12 @@ tap.test('should start timer', async () => {
   await testTimer.completed;
 });
 
+tap.test('should reset a timer', async () => {
+  testTimer.reset();
+  testTimer.start();
+  testTimer.reset();
+  testTimer.start();
+  await testTimer.completed;
+});
+
 tap.start();
