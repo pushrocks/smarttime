@@ -1,7 +1,7 @@
 {
   "name": "@pushrocks/smarttime",
   "private": false,
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "handle timeformats in smart ways",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
