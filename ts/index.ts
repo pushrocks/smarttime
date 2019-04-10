@@ -1,5 +1,6 @@
 import * as plugins from './smarttime.plugins';
 
+export * from './smarttime.classes.cronmanager';
 export * from './smarttime.classes.date';
 export * from './smarttime.classes.hrtmeasurement';
 export * from './smarttime.classes.timer';

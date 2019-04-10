@@ -5,5 +5,6 @@ export { smartpromise };
 
 // third parties
 import * as luxon from 'luxon';
+import * as cron from 'cron';
 
-export { luxon };
+export { luxon, cron };

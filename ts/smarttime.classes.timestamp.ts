@@ -65,6 +65,11 @@ export class TimeStamp {
     }
   }
 
+  /**
+   * returns a boolean for wether a timestamp is younger
+   * @param TimeStampArg
+   * @param tresholdTimeArg
+   */
   public isYoungerThanOtherTimeStamp(TimeStampArg: TimeStamp, tresholdTimeArg: number = 0) {
     if (this.milliSeconds > TimeStampArg.milliSeconds + tresholdTimeArg) {
       return true;
