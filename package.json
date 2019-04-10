@@ -1,8 +1,8 @@
 {
   "name": "@pushrocks/smarttime",
   "private": false,
-  "version": "3.0.6",
-  "description": "handle timeformats in smart ways",
+  "version": "3.0.5",
+  "description": "handle time in smart ways",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "author": "Lossless GmbH",
@@ -15,7 +15,7 @@
     "@gitzone/tsbuild": "^2.1.8",
     "@gitzone/tsrun": "^1.2.5",
     "@gitzone/tstest": "^1.0.20",
-    "@pushrocks/tapbundle": "^3.0.7",
+    "@pushrocks/tapbundle": "^3.0.9",
     "@types/node": "^11.13.2",
     "tslint": "^5.15.0",
     "tslint-config-prettier": "^1.18.0"
