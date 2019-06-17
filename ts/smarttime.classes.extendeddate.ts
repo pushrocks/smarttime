@@ -17,8 +17,8 @@ export class ExtendedDate extends Date {
   /** */
   public static fromEuropeanDateAndTime(
     europeanDateArg: string,
-    timeArg: string,
-    zoneArg: TAvailableZone
+    timeArg: string = '12:00',
+    zoneArg: TAvailableZone = 'Europe/Berlin'
   ) {
     const dateArray = /(.*)\.(.*)\.(.*)/.exec(europeanDateArg);
     const sliceDate = (dateString: string) => {
