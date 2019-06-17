@@ -22,9 +22,20 @@ Use TypeScript for best in class instellisense.
 
 Smarttime offers smart ways to deal with time.
 
-### class ExtendedDate
+### class CronManager
+This class provides scheduling of functions with a cron syntax
 
-This class offers static functions to create zone speicific JavaScript dates from European formated time strings.
+```typescript
+import { CronManager } from '@pushrocks/smarrtime';
+const cronManagerInstance = new CronManager();
+cronManagerInstance.addConrjob('* * * * * *', async () => {
+  console.log('hello'); // will log 'hello' to console once every second;
+})
+cronManagerInstance.start();
+```
+
+### class ExtendedDate
+This class offers static functions to create zone specific JavaScript dates from European formated time strings.
 
 ```TypeScript
 import { ExtendedDate } from '@pushrocks/smarttime'

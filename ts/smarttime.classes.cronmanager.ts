@@ -6,12 +6,12 @@ export class CronManager {
   public cronjobs: plugins.cron.CronJob[] = [];
 
   public addCronjob(cronIdentifierArg: string, cronFunctionArg: plugins.cron.CronCommand) {
-    const newCronJob = new plugins.cron.CronJob(cronIdentifierArg,cronFunctionArg);
+    const newCronJob = new plugins.cron.CronJob(cronIdentifierArg, cronFunctionArg);
     if (this.status === 'started') {
       newCronJob.start();
     }
     this.cronjobs.push(newCronJob);
-  };
+  }
 
   /**
    * starts the cronjob

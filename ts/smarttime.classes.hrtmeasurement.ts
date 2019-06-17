@@ -4,8 +4,8 @@ import * as process from 'process';
  * easy high resolution time measurement
  */
 export class HrtMeasurement {
-  nanoSeconds: number = null;
-  milliSeconds: number = null;
+  public nanoSeconds: number = null;
+  public milliSeconds: number = null;
   private _hrTimeStart = null;
   private _hrTimeStopDiff = null;
   private _started: boolean = false;
@@ -13,7 +13,7 @@ export class HrtMeasurement {
   /**
    * start the measurement
    */
-  start() {
+  public start() {
     this._started = true;
     this._hrTimeStart = process.hrtime();
   }
@@ -21,7 +21,7 @@ export class HrtMeasurement {
   /**
    * stop the measurement
    */
-  stop() {
+  public stop() {
     if (this._started === false) {
       console.log("Hasn't started yet");
       return;
@@ -35,7 +35,7 @@ export class HrtMeasurement {
   /**
    * reset the measurement
    */
-  reset() {
+  public reset() {
     this.nanoSeconds = null;
     this.milliSeconds = null;
     this._hrTimeStart = null;
