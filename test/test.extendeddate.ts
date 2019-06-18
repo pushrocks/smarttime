@@ -16,4 +16,9 @@ tap.test('should create a date and time with European Format', async () => {
   console.log(extendedDate);
 });
 
+tap.test('should create a European date string', async () => {
+  const extendedDate = smarttime.ExtendedDate.fromHyphedDate('2018-02-13');
+  expect(extendedDate.exportToEuropeanDate()).to.equal('13.02.2018');
+});
+
 tap.start();
