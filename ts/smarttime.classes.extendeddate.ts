@@ -20,6 +20,10 @@ export class ExtendedDate extends Date {
     return new ExtendedDate(milliSeconds);
   }
 
+  public static fromDate(dateArg: Date) {
+    return new ExtendedDate(dateArg.getTime());
+  }
+
   public static fromEuropeanDate(europeanDate: string) {
     const dateArray = /(.*)\.(.*)\.(.*)/.exec(europeanDate);
     const luxonDate = plugins.luxon.DateTime.utc(
@@ -68,6 +72,9 @@ export class ExtendedDate extends Date {
   }
 
   // INSTANCE
+  public timezone: TAvailableZone;
+
+
   constructor(unixMilli: number) {
     super(unixMilli);
   }
