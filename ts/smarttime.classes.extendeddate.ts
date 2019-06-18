@@ -3,6 +3,10 @@ import * as plugins from './smarttime.plugins';
 export type TAvailableZone = 'Europe/Berlin';
 
 export class ExtendedDate extends Date {
+  public static fromMillis(milliSeconds: number) {
+    return new ExtendedDate(milliSeconds);
+  }
+
   public static fromEuropeanDate(europeanDate: string) {
     const dateArray = /(.*)\.(.*)\.(.*)/.exec(europeanDate);
     const luxonDate = plugins.luxon.DateTime.utc(
@@ -17,7 +21,7 @@ export class ExtendedDate extends Date {
   /** */
   public static fromEuropeanDateAndTime(
     europeanDateArg: string,
-    timeArg: string = '12:00',
+    timeArg: string = '12:00:00',
     zoneArg: TAvailableZone = 'Europe/Berlin'
   ) {
     const dateArray = /(.*)\.(.*)\.(.*)/.exec(europeanDateArg);
