@@ -3,8 +3,8 @@
   "private": false,
   "version": "3.0.13",
   "description": "handle time in smart ways",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist_ts/index.js",
+  "typings": "dist_ts/index.d.ts",
   "author": "Lossless GmbH",
   "license": "MIT",
   "scripts": {
