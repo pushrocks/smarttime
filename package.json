@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "test": "(tstest ./test/)",
-    "build": "(tsbuild && tsbundle npm)"
+    "build": "(tsbuild && tsbundle npm --production)"
   },
   "devDependencies": {
     "@gitzone/tsbuild": "^2.1.11",
