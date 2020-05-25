@@ -1,17 +1,17 @@
 import * as plugins from './smarttime.plugins';
 import { CronManager } from './smarttime.classes.cronmanager';
 
-export type TJobFunction = (() => void) | (() => Promise<any>);
+export type TJobFunction = (() => void) | (() => Promise<any>);
 
 export class CronJob {
   public status: 'started' | 'stopped' | 'initial' = 'initial';
   public cronExpression: string;
   public jobFunction: TJobFunction;
-  
-  private cronInterval= plugins.cronParser.parseExpression('* * * * * *');
+
+  private cronInterval = plugins.cronParser.parseExpression('* * * * * *');
   private nextExecutionUnix: number = 0;
 
-  constructor(cronManager: CronManager, cronExpressionArg: string, jobFunction: TJobFunction ) {
+  constructor(cronManager: CronManager, cronExpressionArg: string, jobFunction: TJobFunction) {
     this.cronExpression = cronExpressionArg;
     this.jobFunction = jobFunction;
   }
@@ -21,12 +21,18 @@ export class CronJob {
    */
   public checkExecution() {
     if (this.nextExecutionUnix === 0) {
-      this.nextExecutionUnix = this.cronInterval.next().toDate().getTime();
+      this.nextExecutionUnix = this.cronInterval
+        .next()
+        .toDate()
+        .getTime();
       return;
     }
     if (Date.now() > this.nextExecutionUnix) {
       this.jobFunction();
-      this.nextExecutionUnix = this.cronInterval.next().toDate().getTime();
+      this.nextExecutionUnix = this.cronInterval
+        .next()
+        .toDate()
+        .getTime();
     }
   }
 
@@ -39,7 +45,7 @@ export class CronJob {
     this.status = 'stopped';
   }
 
-  private getCronInterval () {
+  private getCronInterval() {
     return plugins.cronParser.parseExpression(this.cronExpression);
   }
 }

@@ -74,7 +74,6 @@ export class ExtendedDate extends Date {
   // INSTANCE
   public timezone: TAvailableZone;
 
-
   constructor(unixMilli: number) {
     super(unixMilli);
   }
@@ -116,10 +115,10 @@ export class ExtendedDate extends Date {
       year: this.getFullYear(),
       yearString: `${this.getFullYear()}`,
       month: this.getMonth() + 1,
-      monthString: ("0" + (this.getMonth() + 1)).slice(-2),
+      monthString: ('0' + (this.getMonth() + 1)).slice(-2),
       monthName: monthsArray[this.getMonth()],
       day: this.getDate(),
-      dayString: ("0" + this.getDate()).slice(-2),
+      dayString: ('0' + this.getDate()).slice(-2),
       dayOfTheWeek: this.getDay(),
       dayOfTheWeekName: daysArray[this.getDay()]
     };

@@ -3,7 +3,7 @@ import * as plugins from './smarttime.plugins';
 export class Interval {
   public status: 'started' | 'stopped' | 'initial' = 'initial';
   private statusAuthorization: any = null;
-  
+
   public intervalMilliseconds: number;
   public intervalJobs: Array<() => any> = [];
   constructor(intervalMillisencondsArg: number) {
@@ -23,7 +23,7 @@ export class Interval {
     runInterval();
   }
 
-  public stop () {
+  public stop() {
     this.status = 'stopped';
     this.statusAuthorization = null;
   }
@@ -32,7 +32,7 @@ export class Interval {
     this.intervalJobs.push(funcArg);
   }
 
-  private executeIntervalJobs () {
+  private executeIntervalJobs() {
     for (const funcArg of this.intervalJobs) {
       funcArg();
     }
