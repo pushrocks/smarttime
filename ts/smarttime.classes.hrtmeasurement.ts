@@ -1,5 +1,3 @@
-import * as process from 'process';
-
 /**
  * easy high resolution time measurement
  */
