@@ -4,7 +4,10 @@ export class Interval {
   public status: 'started' | 'stopped' | 'initial' = 'initial';
   private statusAuthorization: any = null;
 
+  // timings
   public intervalMilliseconds: number;
+  public nextIntervalMillisenconds: number;
+
   public intervalJobs: Array<() => any> = [];
   constructor(intervalMillisencondsArg: number) {
     this.intervalMilliseconds = intervalMillisencondsArg;

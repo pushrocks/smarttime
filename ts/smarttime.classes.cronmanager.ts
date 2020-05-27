@@ -1,21 +1,13 @@
 import * as plugins from './smarttime.plugins';
 import { CronJob } from './smarttime.classes.cronjob';
-import { Timer } from './smarttime.classes.timer';
-import { Interval } from './smarttime.classes.interval';
 
 export class CronManager {
-  public cronInterval = new Interval(1000);
+  public executionTimeout: plugins.smartdelay.Timeout<void>;
 
   public status: 'started' | 'stopped' = 'stopped';
   public cronjobs: CronJob[] = [];
 
-  constructor() {
-    this.cronInterval.addIntervalJob(() => {
-      for (const cronJob of this.cronjobs) {
-        cronJob.checkExecution();
-      }
-    });
-  }
+  constructor() {}
 
   public addCronjob(cronIdentifierArg: string, cronFunctionArg: () => any) {
     const newCronJob = new CronJob(this, cronIdentifierArg, cronFunctionArg);
@@ -30,10 +22,28 @@ export class CronManager {
    */
   public start() {
     this.status = 'started';
-    for (const cron of this.cronjobs) {
-      cron.start();
+    for (const cronJob of this.cronjobs) {
+      cronJob.start();
     }
-    this.cronInterval.start();
+    this.executionTimeout = new plugins.smartdelay.Timeout(0);
+
+    // recursion
+    const runCheckExecution = () => {
+      console.log(`Next CronJob scheduled in ${this.executionTimeout.getTimeLeft()} milliseconds`);
+      this.executionTimeout.promise.then(() => {
+        let timeToNextOverallExecution: number;
+        for (const cronJob of this.cronjobs) {
+          const timeToNextJobExecution = cronJob.checkExecution();
+          if (timeToNextJobExecution < timeToNextOverallExecution || !timeToNextOverallExecution) {
+            timeToNextOverallExecution = timeToNextJobExecution;
+          }
+        }
+        this.executionTimeout = new plugins.smartdelay.Timeout(timeToNextOverallExecution);
+        runCheckExecution();
+      });
+    };
+
+    runCheckExecution();
   }
 
   /**
@@ -41,9 +51,9 @@ export class CronManager {
    */
   public stop() {
     this.status = 'stopped';
+    this.executionTimeout.cancel();
     for (const cron of this.cronjobs) {
       cron.stop();
     }
-    this.cronInterval.stop();
   }
 }

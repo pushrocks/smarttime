@@ -26,12 +26,12 @@ export class ExtendedDate extends Date {
 
   public static fromEuropeanDate(europeanDate: string) {
     const dateArray = /(.*)\.(.*)\.(.*)/.exec(europeanDate);
-    const luxonDate = plugins.luxon.DateTime.utc(
+    const date = new Date(
       parseFloat(dateArray[3]), // year
-      parseFloat(dateArray[2]), // month
+      parseFloat(dateArray[2]) - 1, // month
       parseFloat(dateArray[1]) // day
     );
-    const unixMilli = luxonDate.toMillis();
+    const unixMilli = date.getTime();
     return new ExtendedDate(unixMilli);
   }
 
@@ -64,10 +64,8 @@ export class ExtendedDate extends Date {
     const dateTimeString = `${dateArray[3]}-${sliceDate(dateArray[2])}-${sliceDate(
       dateArray[1]
     )}T${timeArg}`;
-    const luxonDate = plugins.luxon.DateTime.fromISO(dateTimeString, {
-      zone: zoneArg
-    });
-    const unixMilli = luxonDate.toMillis();
+    const date = plugins.dayjs(dateTimeString);
+    const unixMilli = date.toDate().getTime();
     return new ExtendedDate(unixMilli);
   }
 
