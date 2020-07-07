@@ -4,8 +4,8 @@
 export class HrtMeasurement {
   public nanoSeconds: number = null;
   public milliSeconds: number = null;
-  private _hrTimeStart = null;
-  private _hrTimeStopDiff = null;
+  private _milliStart: number = null;
+  private _milliDiff: number = null;
   private _started: boolean = false;
 
   /**
@@ -13,7 +13,7 @@ export class HrtMeasurement {
    */
   public start() {
     this._started = true;
-    this._hrTimeStart = process.hrtime();
+    this._milliStart = Date.now();
   }
 
   /**
@@ -24,9 +24,9 @@ export class HrtMeasurement {
       console.log("Hasn't started yet");
       return;
     }
-    this._hrTimeStopDiff = process.hrtime(this._hrTimeStart);
-    this.nanoSeconds = this._hrTimeStopDiff[0] * 1e9 + this._hrTimeStopDiff[1];
-    this.milliSeconds = this.nanoSeconds / 1000000;
+    this._milliDiff = Date.now() - this._milliStart;
+    this.nanoSeconds = this._milliDiff * 1000;
+    this.milliSeconds = this._milliDiff;
     return this;
   }
 
@@ -36,8 +36,8 @@ export class HrtMeasurement {
   public reset() {
     this.nanoSeconds = null;
     this.milliSeconds = null;
-    this._hrTimeStart = null;
-    this._hrTimeStopDiff = null;
+    this._milliStart = null;
+    this._milliDiff = null;
     this._started = false;
   }
 }
