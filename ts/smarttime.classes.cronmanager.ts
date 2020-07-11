@@ -15,6 +15,8 @@ export class CronManager {
     if (this.status === 'started') {
       newCronJob.start();
     }
+
+    return newCronJob;
   }
 
   /**
