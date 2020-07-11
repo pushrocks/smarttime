@@ -5,13 +5,13 @@ export class CronManager {
   public executionTimeout: plugins.smartdelay.Timeout<void>;
 
   public status: 'started' | 'stopped' = 'stopped';
-  public cronjobs: CronJob[] = [];
+  public cronjobs = new plugins.lik.ObjectMap<CronJob>();
 
   constructor() {}
 
   public addCronjob(cronIdentifierArg: string, cronFunctionArg: () => any) {
     const newCronJob = new CronJob(this, cronIdentifierArg, cronFunctionArg);
-    this.cronjobs.push(newCronJob);
+    this.cronjobs.add(newCronJob);
     if (this.status === 'started') {
       newCronJob.start();
     }
@@ -19,12 +19,17 @@ export class CronManager {
     return newCronJob;
   }
 
+  public removeCronjob(cronjobArg: CronJob) {
+    cronjobArg.stop();
+    this.cronjobs.remove(cronjobArg);
+  }
+
   /**
    * starts the cronjob
    */
   public start() {
     this.status = 'started';
-    for (const cronJob of this.cronjobs) {
+    for (const cronJob of this.cronjobs.getArray()) {
       cronJob.start();
     }
     this.executionTimeout = new plugins.smartdelay.Timeout(0);
@@ -34,7 +39,7 @@ export class CronManager {
       console.log(`Next CronJob scheduled in ${this.executionTimeout.getTimeLeft()} milliseconds`);
       this.executionTimeout.promise.then(() => {
         let timeToNextOverallExecution: number;
-        for (const cronJob of this.cronjobs) {
+        for (const cronJob of this.cronjobs.getArray()) {
           const timeToNextJobExecution = cronJob.checkExecution();
           if (timeToNextJobExecution < timeToNextOverallExecution || !timeToNextOverallExecution) {
             timeToNextOverallExecution = timeToNextJobExecution;
@@ -54,7 +59,7 @@ export class CronManager {
   public stop() {
     this.status = 'stopped';
     this.executionTimeout.cancel();
-    for (const cron of this.cronjobs) {
+    for (const cron of this.cronjobs.getArray()) {
       cron.stop();
     }
   }
