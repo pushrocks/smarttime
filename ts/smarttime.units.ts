@@ -16,7 +16,7 @@ export let units = {
   },
   minutes: (timesArg = 1) => {
     return timesArg * 60000;
-  }
+  },
 };
 
 export interface IUnitCombinationArg {
@@ -30,7 +30,7 @@ export interface IUnitCombinationArg {
 
 export let getMilliSecondsFromUnits = (combinationArg: IUnitCombinationArg) => {
   let timeInMilliseconds = 0;
-  let addMilliSeconds = milliSecondsArg => {
+  let addMilliSeconds = (milliSecondsArg) => {
     timeInMilliseconds = timeInMilliseconds + milliSecondsArg;
   };
   if (combinationArg.years) {

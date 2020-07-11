@@ -98,7 +98,7 @@ export class ExtendedDate extends Date {
       'September',
       'October',
       'November',
-      'December'
+      'December',
     ];
     const daysArray = [
       'Monday',
@@ -107,7 +107,7 @@ export class ExtendedDate extends Date {
       'Thursday',
       'Friday',
       'Saturday',
-      'Sunday'
+      'Sunday',
     ];
     return {
       year: this.getFullYear(),
@@ -118,7 +118,7 @@ export class ExtendedDate extends Date {
       day: this.getDate(),
       dayString: ('0' + this.getDate()).slice(-2),
       dayOfTheWeek: this.getDay(),
-      dayOfTheWeekName: daysArray[this.getDay()]
+      dayOfTheWeekName: daysArray[this.getDay()],
     };
   }
 }

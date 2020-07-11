@@ -5,7 +5,7 @@ import * as smarttime from '../ts/index';
 // Test TimeStamp class
 let testTimeStamp: smarttime.TimeStamp;
 let testTimeStamp2: smarttime.TimeStamp;
-tap.test('should create valid testTimeStamp instance', async tools => {
+tap.test('should create valid testTimeStamp instance', async (tools) => {
   testTimeStamp = new smarttime.TimeStamp();
   await tools.delayFor(2);
   testTimeStamp2 = new smarttime.TimeStamp();
@@ -23,7 +23,7 @@ tap.test('should have valid linuxtime', async () => {
 let testHrtMeasurement: smarttime.HrtMeasurement;
 
 // Test HrtMeasurement
-tap.test('should create valid HrtMeasurements', async tools => {
+tap.test('should create valid HrtMeasurements', async (tools) => {
   testHrtMeasurement = new smarttime.HrtMeasurement();
   testHrtMeasurement.start();
   await tools.delayFor(20);
@@ -41,7 +41,7 @@ tap.test('should combine units', async () => {
     weeks: 2,
     days: 2,
     hours: 2,
-    minutes: 2
+    minutes: 2,
   });
   // tslint:disable-next-line:no-console
   console.log(computedTime);

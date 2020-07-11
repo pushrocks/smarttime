@@ -4,7 +4,7 @@ import { CronManager } from './smarttime.classes.cronmanager';
 export type TJobFunction = (() => void) | (() => Promise<any>);
 
 export class CronJob {
-  public croner; 
+  public croner;
   public status: 'started' | 'stopped' | 'initial' = 'initial';
   public cronExpression: string;
   public jobFunction: TJobFunction;
