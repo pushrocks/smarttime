@@ -28,29 +28,36 @@ export class CronManager {
    * starts the cronjob
    */
   public start() {
-    this.status = 'started';
-    for (const cronJob of this.cronjobs.getArray()) {
-      cronJob.start();
-    }
-    this.executionTimeout = new plugins.smartdelay.Timeout(0);
+    if (this.status !== 'started') {
+      this.status = 'started';
+      for (const cronJob of this.cronjobs.getArray()) {
+        cronJob.start();
+      }
+      this.executionTimeout = new plugins.smartdelay.Timeout(0);
 
-    // recursion
-    const runCheckExecution = () => {
-      console.log(`Next CronJob scheduled in ${this.executionTimeout.getTimeLeft()} milliseconds`);
-      this.executionTimeout.promise.then(() => {
-        let timeToNextOverallExecution: number;
-        for (const cronJob of this.cronjobs.getArray()) {
-          const timeToNextJobExecution = cronJob.checkExecution();
-          if (timeToNextJobExecution < timeToNextOverallExecution || !timeToNextOverallExecution) {
-            timeToNextOverallExecution = timeToNextJobExecution;
+      // recursion
+      const runCheckExecution = () => {
+        console.log(
+          `Next CronJob scheduled in ${this.executionTimeout.getTimeLeft()} milliseconds`
+        );
+        this.executionTimeout.promise.then(() => {
+          let timeToNextOverallExecution: number;
+          for (const cronJob of this.cronjobs.getArray()) {
+            const timeToNextJobExecution = cronJob.checkExecution();
+            if (
+              timeToNextJobExecution < timeToNextOverallExecution ||
+              !timeToNextOverallExecution
+            ) {
+              timeToNextOverallExecution = timeToNextJobExecution;
+            }
           }
-        }
-        this.executionTimeout = new plugins.smartdelay.Timeout(timeToNextOverallExecution);
-        runCheckExecution();
-      });
-    };
+          this.executionTimeout = new plugins.smartdelay.Timeout(timeToNextOverallExecution);
+          runCheckExecution();
+        });
+      };
 
-    runCheckExecution();
+      runCheckExecution();
+    }
   }
 
   /**
