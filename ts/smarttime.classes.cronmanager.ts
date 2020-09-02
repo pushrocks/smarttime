@@ -64,8 +64,12 @@ export class CronManager {
    * stops all cronjobs
    */
   public stop() {
-    this.status = 'stopped';
-    this.executionTimeout.cancel();
+    if (this.status === 'started') {
+      this.status = 'stopped';
+      this.executionTimeout.cancel();
+    } else {
+      console.log(`You tried to stop a CronManager that was not actually started.`);
+    }
     for (const cron of this.cronjobs.getArray()) {
       cron.stop();
     }
