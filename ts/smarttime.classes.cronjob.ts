@@ -21,11 +21,14 @@ export class CronJob {
    */
   public checkExecution(): number {
     if (this.nextExecutionUnix === 0) {
-      this.nextExecutionUnix = this.croner.msToNext();
+      this.nextExecutionUnix = Date.now() + this.croner.msToNext();
     }
     if (Date.now() > this.nextExecutionUnix) {
-      this.jobFunction();
-      this.nextExecutionUnix = this.croner.msToNext();
+      const maybePromise = this.jobFunction();
+      if (maybePromise instanceof Promise) {
+        maybePromise.catch(e => console.log(e));
+      }
+      this.nextExecutionUnix = Date.now() + this.croner.msToNext();
     }
     return this.nextExecutionUnix;
   }

@@ -9,7 +9,7 @@ export class CronManager {
 
   constructor() {}
 
-  public addCronjob(cronIdentifierArg: string, cronFunctionArg: () => any) {
+  public addCronjob(cronIdentifierArg: string, cronFunctionArg: () => Promise<void>) {
     const newCronJob = new CronJob(this, cronIdentifierArg, cronFunctionArg);
     this.cronjobs.add(newCronJob);
     if (this.status === 'started') {
@@ -33,17 +33,13 @@ export class CronManager {
       for (const cronJob of this.cronjobs.getArray()) {
         cronJob.start();
       }
-      this.executionTimeout = new plugins.smartdelay.Timeout(0);
-
-      // recursion
-      const runCheckExecution = () => {
-        console.log(
-          `Next CronJob scheduled in ${this.executionTimeout.getTimeLeft()} milliseconds`
-        );
-        this.executionTimeout.promise.then(() => {
+      const runCronCycle = async () => {
+        this.executionTimeout = new plugins.smartdelay.Timeout(0);
+        do {
           let timeToNextOverallExecution: number;
           for (const cronJob of this.cronjobs.getArray()) {
-            const timeToNextJobExecution = cronJob.checkExecution();
+            const nextExecutionTime = cronJob.checkExecution();
+            const timeToNextJobExecution = nextExecutionTime - Date.now();
             if (
               timeToNextJobExecution < timeToNextOverallExecution ||
               !timeToNextOverallExecution
@@ -52,11 +48,13 @@ export class CronManager {
             }
           }
           this.executionTimeout = new plugins.smartdelay.Timeout(timeToNextOverallExecution);
-          runCheckExecution();
-        });
+          console.log(
+            `Next CronJob scheduled in ${this.executionTimeout.getTimeLeft()} milliseconds`
+          );
+          await this.executionTimeout.promise;
+        } while (this.status === 'started');
       };
-
-      runCheckExecution();
+      runCronCycle();
     }
   }
 
