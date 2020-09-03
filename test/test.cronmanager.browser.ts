@@ -12,7 +12,7 @@ tap.test('should create a valid instance of cronmanager', async () => {
 tap.test('should create a valid cronJon', async (tools) => {
   const done = tools.defer();
   let counter = 0;
-  testCronManager.addCronjob('*/2 * * * * *', () => {
+  testCronManager.addCronjob('*/2 * * * * *', async () => {
     if (counter === 10) {
       done.resolve();
     }
