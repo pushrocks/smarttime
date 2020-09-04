@@ -8,7 +8,7 @@
   "author": "Lossless GmbH",
   "license": "MIT",
   "scripts": {
-    "test": "(tstest ./test/)",
+    "test": "(tstest ./test)",
     "build": "(tsbuild --web && tsbundle npm)"
   },
   "devDependencies": {
