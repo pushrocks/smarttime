@@ -36,18 +36,17 @@ export class CronManager {
       const runCronCycle = async () => {
         this.executionTimeout = new plugins.smartdelay.Timeout(0);
         do {
-          let timeToNextOverallExecution: number;
+          let nextRunningCronjob: CronJob;
           for (const cronJob of this.cronjobs.getArray()) {
-            const nextExecutionTime = cronJob.checkExecution();
-            const timeToNextJobExecution = nextExecutionTime - Date.now();
+            cronJob.checkExecution();
             if (
-              timeToNextJobExecution < timeToNextOverallExecution ||
-              !timeToNextOverallExecution
+              !nextRunningCronjob ||
+              cronJob.getTimeToNextExecution() < nextRunningCronjob.getTimeToNextExecution()
             ) {
-              timeToNextOverallExecution = timeToNextJobExecution;
+              nextRunningCronjob = cronJob;
             }
           }
-          this.executionTimeout = new plugins.smartdelay.Timeout(timeToNextOverallExecution);
+          this.executionTimeout = new plugins.smartdelay.Timeout(nextRunningCronjob.getTimeToNextExecution());
           console.log(
             `Next CronJob scheduled in ${this.executionTimeout.getTimeLeft()} milliseconds`
           );
