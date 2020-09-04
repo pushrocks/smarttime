@@ -46,10 +46,17 @@ export class CronManager {
               nextRunningCronjob = cronJob;
             }
           }
-          this.executionTimeout = new plugins.smartdelay.Timeout(nextRunningCronjob.getTimeToNextExecution());
-          console.log(
-            `Next CronJob scheduled in ${this.executionTimeout.getTimeLeft()} milliseconds`
-          );
+          if (nextRunningCronjob) {
+            this.executionTimeout = new plugins.smartdelay.Timeout(nextRunningCronjob.getTimeToNextExecution());
+            console.log(
+              `Next CronJob scheduled in ${this.executionTimeout.getTimeLeft()} milliseconds`
+            );
+          } else {
+            this.executionTimeout = new plugins.smartdelay.Timeout(1000);
+            console.log('no cronjobs specified! Checking again in 1 second');
+          }
+          
+          
           await this.executionTimeout.promise;
         } while (this.status === 'started');
       };
