@@ -6,7 +6,6 @@ import * as smartpromise from '@pushrocks/smartpromise';
 export { lik, smartdelay, smartpromise };
 
 // third parties
-import croner from 'croner';
 import dayjs from 'dayjs';
 
-export { croner, dayjs };
+export { dayjs };

@@ -13,7 +13,7 @@ export class CronJob {
   constructor(cronManager: CronManager, cronExpressionArg: string, jobFunction: TJobFunction) {
     this.cronExpression = cronExpressionArg;
     this.jobFunction = jobFunction;
-    this.croner = plugins.croner(this.cronExpression);
+    // this.croner = plugins.croner(this.cronExpression);
   }
 
   /**
@@ -41,7 +41,7 @@ export class CronJob {
    * gets the time to next execution
    */
   public getTimeToNextExecution() {
-    return this.croner.msToNext();
+    return 600000;
   }
 
   public start() {
