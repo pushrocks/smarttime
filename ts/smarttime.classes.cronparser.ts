@@ -33,7 +33,7 @@ export class CronParser {
     }
   }
 
-  public getMsToNextTimeMatch() {
+  public msToNext() {
     const cronArray = this.cronArray;
     const secondExpression = cronArray[0];
     const minuteExpression = cronArray[1];
