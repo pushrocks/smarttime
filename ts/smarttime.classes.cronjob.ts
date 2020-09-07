@@ -1,10 +1,12 @@
 import * as plugins from './smarttime.plugins';
 import { CronManager } from './smarttime.classes.cronmanager';
 
+import { CronParser } from './smarttime.classes.cronparser';
+
 export type TJobFunction = (() => void) | (() => Promise<any>);
 
 export class CronJob {
-  public croner;
+  public cronParser: CronParser;
   public status: 'started' | 'stopped' | 'initial' = 'initial';
   public cronExpression: string;
   public jobFunction: TJobFunction;
@@ -13,7 +15,7 @@ export class CronJob {
   constructor(cronManager: CronManager, cronExpressionArg: string, jobFunction: TJobFunction) {
     this.cronExpression = cronExpressionArg;
     this.jobFunction = jobFunction;
-    // this.croner = plugins.croner(this.cronExpression);
+    this.cronParser = new CronParser(cronExpressionArg);
   }
 
   /**
@@ -41,7 +43,7 @@ export class CronJob {
    * gets the time to next execution
    */
   public getTimeToNextExecution() {
-    return 600000;
+    return this.cronParser.getMsToNextTimeMatch();
   }
 
   public start() {
