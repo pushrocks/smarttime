@@ -27,7 +27,7 @@ export class CronParser {
       };
       return findEvenMatch(startValue);
     }
-    if (parseInt(cronPart, 10)) {
+    if (parseInt(cronPart, 10) || cronPart === '0') {
       const match = parseInt(cronPart, 10);
       return match;
     }
@@ -42,19 +42,36 @@ export class CronParser {
     const monthExpression = cronArray[4];
     const yearExpression = cronArray[5];
 
-    const currentDate = new Date();
-    const currentSecond = currentDate.getSeconds() + 1;
-    const currentMinute = currentDate.getMinutes();
-    const currentHour = currentDate.getHours();
-    const currentDay = currentDate.getDate();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
+    let currentDate = new Date();
+    let currentSecond = currentDate.getSeconds() + 1;
+    let currentMinute = currentDate.getMinutes();
+    let currentHour = currentDate.getHours();
+    let currentDay = currentDate.getDate();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
 
     const targetSecond = this.getNextPartMatch(secondExpression, currentSecond, 59);
+    if (targetSecond < currentSecond) {
+      currentMinute = (currentMinute + 1) % 59;
+    }
     const targetMinute = this.getNextPartMatch(minuteExpression, currentMinute, 59);
+    if (targetMinute < currentMinute) {
+      currentHour = (currentHour + 1) % 23;
+    }
     const targetHour = this.getNextPartMatch(hourExpression, currentHour, 23);
+    if (targetHour < currentHour) {
+      currentDay = (currentDay + 1) % 30;
+    }
+    
     const targetDay = currentDay;
+    if (targetDay < currentDay) {
+      currentMonth = (currentMonth + 1) % 11;
+    }
+
     const targetMonth = currentMonth;
+    if (targetMonth < currentMonth) {
+      currentYear = (currentYear + 1);
+    }
     const targetYear = currentYear;
 
     const targetDate = new Date(

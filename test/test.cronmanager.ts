@@ -44,6 +44,17 @@ tap.test('should create a valid cronJon', async (tools) => {
   await done2.promise;
   await done3.promise;
   testCronManager.stop();
+  testCronManager.removeCronjob(cronJob3);
+});
+
+tap.test('runs every full minute', async (tools) => {
+  const done = tools.defer();
+  const cronJob = testCronManager.addCronjob('0 * * * * *', async () => {
+    done.resolve();
+  });
+  testCronManager.start();
+  await done.promise;
+  testCronManager.stop();
 });
 
 tap.start();
