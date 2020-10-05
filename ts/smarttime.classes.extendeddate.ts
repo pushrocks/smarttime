@@ -125,4 +125,8 @@ export class ExtendedDate extends Date {
   public format (formatArg: string) {
     return plugins.dayjs(this.getTime()).format(formatArg);
   }
+
+  public isToday () {
+    return plugins.dayjs(this.getTime()).isToday();
+  }
 }
