@@ -121,4 +121,8 @@ export class ExtendedDate extends Date {
       dayOfTheWeekName: daysArray[this.getDay()],
     };
   }
+
+  public format (formatArg: string) {
+    return plugins.dayjs(this.getTime()).format(formatArg);
+  }
 }

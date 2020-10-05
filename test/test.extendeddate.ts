@@ -21,4 +21,9 @@ tap.test('should create a European date string', async () => {
   expect(extendedDate.exportToEuropeanDate()).to.equal('13.02.2018');
 });
 
+tap.test('should format a date', async () => {
+  const extendedDate = new smarttime.ExtendedDate(Date.now());
+  console.log(extendedDate.format('YYYY-MM-DD - hh:mm'));
+})
+
 tap.start();
