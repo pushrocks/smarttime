@@ -1,4 +1,5 @@
 import * as plugins from './smarttime.plugins';
+import * as units from './smarttime.units';
 
 export type TAvailableZone = 'Europe/Berlin';
 
@@ -126,7 +127,20 @@ export class ExtendedDate extends Date {
     return plugins.dayjs(this.getTime()).format(formatArg);
   }
 
+  /**
+   * boolean checks
+   */
   public isToday () {
     return plugins.dayjs(this.getTime()).isToday();
+  }
+
+  public lessTimePassedToNow(unitArgs: units.IUnitCombinationArg): boolean {
+    const maxPassedUnixTime = units.getMilliSecondsFromUnits(unitArgs);
+    const actualPassedUnixTime = Date.now() - this.getTime();
+    return actualPassedUnixTime < maxPassedUnixTime;
+  }
+
+  public moreTimePassedToNow(unitArgs: units.IUnitCombinationArg) {
+    return !this.lessTimePassedToNow(unitArgs);
   }
 }
